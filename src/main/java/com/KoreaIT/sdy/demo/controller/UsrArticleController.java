@@ -17,8 +17,11 @@ public class UsrArticleController {
 	
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public Article doWrite(String title, String body) {
-		return articleService.writeArticle(title, body);
+	public Object doWrite(String title, String body) {
+		int id = articleService.writeArticle(title, body);
+		
+		Article article = articleService.getArticleById(id);
+		return id + "번 게시글이 생성되었습니다." + article;
 	}
 	
 	@RequestMapping("/usr/article/getArticles")
